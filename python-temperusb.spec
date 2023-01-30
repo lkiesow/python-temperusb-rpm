@@ -3,7 +3,7 @@
 
 Name:           python-%{pypi_name}
 Version:        %{pypi_version}
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        Reads temperature from TEMPerV1 devices (USB 0c45:7401)
 
 License:        GPLv3
@@ -25,7 +25,7 @@ temperature of 1-3 USB devices via SNMP.
 Summary:        %{summary}
 %{?python_provide:%python_provide python3-%{pypi_name}}
 
-Requires:       python3dist(pyusb) >= 1.0.0
+Requires:       python3dist(pyusb)
 Requires:       python3dist(setuptools)
 %description -n python3-%{pypi_name}
 This is a rewrite of a userspace USB driver for TEMPer devices presenting a USB
