@@ -3,7 +3,7 @@
 
 Name:           python-%{pypi_name}
 Version:        %{pypi_version}
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Reads temperature from TEMPerV1 devices (USB 0c45:7401)
 
 License:        GPLv3
@@ -19,14 +19,13 @@ This is a rewrite of a userspace USB driver for TEMPer devices presenting a USB
 ID like this: 0c45:7401 Microdia My device came from [M-Ware ID7747]( and also
 reports itself as 'RDing TEMPerV1.2'.Also provides a passpersist-module for
 NetSNMP (as found in the snmpd packages of Debian and Ubuntu) to present the
-temperature of 1-3 USB devices via SNMP. Reported working devices| USB ID |
-Name...
+temperature of 1-3 USB devices via SNMP.
 
 %package -n     python3-%{pypi_name}
 Summary:        %{summary}
 %{?python_provide:%python_provide python3-%{pypi_name}}
 
-Requires:       python3dist(pyusb) >= 1
+Requires:       python3dist(pyusb) >= 1.0.0
 Requires:       python3dist(setuptools)
 %description -n python3-%{pypi_name}
 This is a rewrite of a userspace USB driver for TEMPer devices presenting a USB
@@ -57,5 +56,8 @@ rm -rf %{pypi_name}.egg-info
 %{python3_sitelib}/%{pypi_name}-%{pypi_version}-py%{python3_version}.egg-info
 
 %changelog
+* Tue Jan 31 2023 Lars Kiesow <lkiesow@uos.de> - 1.6.0-2
+- pyusb version requirement
+
 * Mon Jan 30 2023 Lars Kiesow <lkiesow@uos.de> - 1.6.0-1
 - Initial package.
