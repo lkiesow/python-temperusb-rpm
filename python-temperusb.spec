@@ -1,11 +1,9 @@
 %global pypi_name temperusb
 %global pypi_version 1.6.0
 
-%global __python_requires null
-
 Name:           python-%{pypi_name}
 Version:        %{pypi_version}
-Release:        3%{?dist}
+Release:        4%{?dist}
 Summary:        Reads temperature from TEMPerV1 devices (USB 0c45:7401)
 
 License:        GPLv3
@@ -15,6 +13,7 @@ BuildArch:      noarch
 
 BuildRequires:  python3-devel
 BuildRequires:  python3dist(setuptools)
+BuildRequires:  sed
 
 %description
 This is a rewrite of a userspace USB driver for TEMPer devices presenting a USB
@@ -27,7 +26,7 @@ temperature of 1-3 USB devices via SNMP.
 Summary:        %{summary}
 %{?python_provide:%python_provide python3-%{pypi_name}}
 
-Requires:       python3dist(pyusb)
+Requires:       python3dist(pyusb) >= 1
 Requires:       python3dist(setuptools)
 %description -n python3-%{pypi_name}
 This is a rewrite of a userspace USB driver for TEMPer devices presenting a USB
@@ -44,6 +43,7 @@ Name...
 rm -rf %{pypi_name}.egg-info
 
 %build
+sed -i 's/pyusb>=1.0.0rc1/pyusb>=1/g' setup.py
 %py3_build
 
 %install
@@ -58,6 +58,9 @@ rm -rf %{pypi_name}.egg-info
 %{python3_sitelib}/%{pypi_name}-%{pypi_version}-py%{python3_version}.egg-info
 
 %changelog
+* Tue Jan 31 2023 Lars Kiesow <lkiesow@uos.de> - 1.6.0-4
+- Fix pyusb version in setup.py
+
 * Tue Jan 31 2023 Lars Kiesow <lkiesow@uos.de> - 1.6.0-2
 - pyusb version requirement
 
