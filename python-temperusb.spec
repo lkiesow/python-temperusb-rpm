@@ -1,6 +1,8 @@
 %global pypi_name temperusb
 %global pypi_version 1.6.0
 
+%global __python_requires null
+
 Name:           python-%{pypi_name}
 Version:        %{pypi_version}
 Release:        3%{?dist}
